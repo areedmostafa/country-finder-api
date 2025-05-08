@@ -3,16 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Country Info Search</title>
+    <title>Country Info Explorer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Country Info Search</h1>
+        <div class="header-content">
+            <h1>Country Information Explorer</h1>
+        </div>
     </header>
     <main>
         <form id="country-search-form">
-            <input type="text" id="country-input" placeholder="Enter country name" required />
+            <input type="text" id="country-input" placeholder="Search for a country..." required />
             <button type="submit">Search</button>
         </form>
         <section id="results"></section>

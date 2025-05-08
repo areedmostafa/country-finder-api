@@ -28,12 +28,16 @@ function renderCountries(data, resultsSection) {
             countryDiv.style.animationDelay = `${0.05 * idx}s`;
             countryDiv.innerHTML = `
                 <h2>${name}</h2>
-                <img src="${flag}" alt="Flag of ${name}" class="flag">
-                <p><strong>Capital:</strong> ${capital}</p>
-                <p><strong>Currency:</strong> ${currencies}</p>
-                <p><strong>Population:</strong> ${population}</p>
-                <p><strong>Region:</strong> ${region}</p>
-                <p><strong>Languages:</strong> ${languages}</p>
+                <div class="flag-container">
+                    <img src="${flag}" alt="Flag of ${name}" class="flag">
+                </div>
+                <div class="country-details">
+                    <p><strong>Capital:</strong> ${capital}</p>
+                    <p><strong>Currency:</strong> ${currencies}</p>
+                    <p><strong>Population:</strong> ${population}</p>
+                    <p><strong>Region:</strong> ${region}</p>
+                    <p><strong>Languages:</strong> ${languages}</p>
+                </div>
             `;
             resultsSection.appendChild(countryDiv);
         }, 50 * idx);
@@ -41,7 +45,7 @@ function renderCountries(data, resultsSection) {
 }
 
 async function fetchAndRenderCountriesByNames(names, resultsSection) {
-    resultsSection.innerHTML = '<p>Loading...</p>';
+    resultsSection.innerHTML = '<p class="loading">Loading countries...</p>';
     try {
         const promises = names.map(async name => {
             const res = await fetch(`https://restcountries.com/v3.1/name/${encodeURIComponent(name)}`);
