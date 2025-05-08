@@ -11,15 +11,40 @@
 </head>
 <body>
     <header>
+        <div class="logo-container">
+            <img src="Logo.png" alt="Logo" class="header-logo">
+        </div>
         <div class="header-content">
-            <h1>Country Information Explorer</h1>
+            <h1>Country Information Explorer with AI</h1>
         </div>
     </header>
     <main>
-        <form id="country-search-form">
-            <input type="text" id="country-input" placeholder="Search for a country..." required />
-            <button type="submit">Search</button>
-        </form>
+        <div class="tools-container">
+            <form id="country-search-form">
+                <input type="text" id="country-input" placeholder="Search for a country..." required />
+                <button type="submit">Search</button>
+            </form>
+            
+            <div class="assistant-container">
+                <h3>AI Travel Assistant</h3>
+                <form id="ai-assistant-form">
+                    <div class="input-group">
+                        <label for="current-country">Your Current Country</label>
+                        <input type="text" id="current-country" placeholder="e.g., United States" required />
+                    </div>
+                    <div class="input-group">
+                        <label for="budget">Your Budget (USD)</label>
+                        <input type="number" id="budget" placeholder="e.g., 2000" min="100" required />
+                    </div>
+                    <div class="input-group">
+                        <label for="preferences">Travel Preferences</label>
+                        <textarea id="preferences" placeholder="e.g., beaches, mountains, historical sites..." required></textarea>
+                    </div>
+                    <button type="submit" class="assistant-btn">Get Travel Recommendations</button>
+                </form>
+                <div id="assistant-result"></div>
+            </div>
+        </div>
         <section id="results"></section>
     </main>
     <footer>
