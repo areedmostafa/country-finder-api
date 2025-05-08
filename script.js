@@ -43,10 +43,17 @@ function renderCountries(data, resultsSection) {
 async function fetchAndRenderCountriesByNames(names, resultsSection) {
     resultsSection.innerHTML = '<p>Loading...</p>';
     try {
-        const promises = names.map(name => fetch(`https://restcountries.com/v3.1/name/${encodeURIComponent(name)}?fullText=true`).then(r => r.json()));
-        const results = await Promise.all(promises);
-        // Flatten and filter out not found
-        const countries = results.flat().filter(c => c && c[0]).map(c => c[0]);
+        const promises = names.map(async name => {
+            const res = await fetch(`https://restcountries.com/v3.1/name/${encodeURIComponent(name)}`);
+            const arr = await res.json();
+            if (!Array.isArray(arr)) return null;
+            // Try to find best match
+            const lower = name.toLowerCase();
+            let match = arr.find(c => c.name?.common?.toLowerCase() === lower || c.name?.official?.toLowerCase() === lower);
+            if (!match) match = arr[0];
+            return match;
+        });
+        const countries = (await Promise.all(promises)).filter(Boolean);
         renderCountries(countries, resultsSection);
     } catch (err) {
         resultsSection.innerHTML = `<p class="error">Failed to load default countries.</p>`;
